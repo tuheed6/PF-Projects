@@ -1,0 +1,29 @@
+
+#include <stdio.h>
+
+int main() {
+    int n, i;
+    float sum = 0.0, average;
+
+    // Step 1: Input the size of the array
+    printf("Enter the number of elements in the array: ");
+    scanf("%d", &n);
+
+    int arr[n]; // Declare a 1D array
+
+    // Step 2: Input the elements of the array
+    printf("Enter %d elements: \n", n);
+    for (i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+        sum += arr[i]; // Add each element to sum
+    }
+
+    // Step 3: Calculate the average
+    average = sum / n;
+
+    // Step 4: Output the results
+    printf("Sum of array elements: %.2f\n", sum);
+    printf("Average of array elements: %.2f\n", average);
+
+    return 0;
+}

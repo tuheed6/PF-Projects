@@ -1,0 +1,131 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+
+// Function to convert decimal to binary
+void decimalToBinary(int decimal) {
+    int binary[32], i = 0;
+
+    // Convert decimal to binary
+    while (decimal > 0) {
+        binary[i] = decimal % 2; // Store remainder
+        decimal /= 2;             // Divide by 2
+        i++;
+    }
+
+    // Print binary representation
+    printf("Binary representation: ");
+    for (int j = i - 1; j >= 0; j--) {
+        printf("%d", binary[j]);
+    }
+    printf("\n");
+}
+
+// Function to convert binary to decimal
+int binaryToDecimal(char binary[]) {
+    int decimal = 0;
+    int length = strlen(binary);
+
+    // Convert binary to decimal
+    for (int i = 0; i < length; i++) {
+        if (binary[length - 1 - i] == '1') {
+            decimal += pow(2, i);
+        }
+    }
+
+    return decimal;
+}
+
+// Function to convert octal to binary
+void octalToBinary(int octal) {
+    int decimal = 0, binary[32], i = 0;
+
+    // Convert octal to decimal
+    int base = 1;
+    while (octal > 0) {
+        decimal += (octal % 10) * base; // Convert to decimal
+        octal /= 10;                    // Remove last digit
+        base *= 8;                      // Increase base
+    }
+
+    // Convert decimal to binary
+    while (decimal > 0) {
+        binary[i] = decimal % 2; // Store remainder
+        decimal /= 2;             // Divide by 2
+        i++;
+    }
+
+    // Print binary representation
+    printf("Binary representation: ");
+    for (int j = i - 1; j >= 0; j--) {
+        printf("%d", binary[j]);
+    }
+    printf("\n");
+}
+
+// Function to convert decimal to octal
+void decimalToOctal(int decimal) {
+    int octal[32], i = 0;
+
+    // Convert decimal to octal
+    while (decimal > 0) {
+        octal[i] = decimal % 8; // Store remainder
+        decimal /= 8;            // Divide by 8
+        i++;
+    }
+
+    // Print octal representation
+    printf("Octal representation: ");
+    for (int j = i - 1; j >= 0; j--) {
+        printf("%d", octal[j]);
+    }
+    printf("\n");
+}
+
+int main() {
+    int choice;
+    printf("Select conversion type:\n");
+    printf("1. Decimal to Binary\n");
+    printf("2. Binary to Decimal\n");
+    printf("3. Octal to Binary\n");
+    printf("4. Decimal to Octal\n");
+    printf("Enter your choice (1-4): ");
+    scanf("%d", &choice);
+
+    switch (choice) {
+        case 1: {
+            int decimal;
+            printf("Enter a decimal number: ");
+            scanf("%d", &decimal);
+            decimalToBinary(decimal);
+            break;
+        }
+        case 2: {
+            char binary[32];
+            printf("Enter a binary number: ");
+            scanf("%s", binary);
+            int decimal = binaryToDecimal(binary);
+            printf("Decimal representation: %d\n", decimal);
+            break;
+        }
+        case 3: {
+            int octal;
+            printf("Enter an octal number: ");
+            scanf("%o", &octal);
+            octalToBinary(octal);
+            break;
+        }
+        case 4: {
+            int decimal;
+            printf("Enter a decimal number: ");
+            scanf("%d", &decimal);
+            decimalToOctal(decimal);
+            break;
+        }
+        default:
+            printf("Invalid choice! Please enter a number between 1 and 4.\n");
+            break;
+    }
+
+    return 0;
+}
